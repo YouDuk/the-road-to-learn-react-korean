@@ -579,7 +579,7 @@ class ExplainBindingsComponent extends Component {
 `onClick={doSomething()}`일 경우, `doSomething()` 함수는 그 즉시 실행됩니다. 핸들러 표현식이 평가되는데, 그 결과를 함수로 반환하지 않기 때문에 버튼을 클릭해도 아무 일도 일어나지 않습니다. 따라서 `onClick={doSomething}`으로 수정하면 실행됩니다. 이를 `onDismiss()` 클래스 메서드에 적용해봅시다.
 
 `onClick={this.onDismiss}`로 고쳤겠지만 이 역시 문제가 있습니다. 삭제할 아이템을 식별하는 `item.objectID`가 빠져있습니다. 함수 인자를 추가합시다.
- 
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 ...
@@ -853,7 +853,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-폼에 입력된 검색어를 컴포넌트 내부 상태에 저장되어야 하기 때문에, 타켓 객체의 입력 필드 값을 `this.setState()` 메서드로 state를 업데이트 하겠습니다.
+폼에 입력된 검색어를 컴포넌트 내부 상태에 저장해야 하기 때문에,  `this.setState()` 메서드를 사용하여 현재 타켓 객체의 입력 필드 값으로 state를 업데이트 하겠습니다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
@@ -1298,7 +1298,7 @@ class Table extends Component {
 ## 구성가능한 컴포넌트 Composable Components
 
 `prop` 객체 안을 접근할 수 있는 프로퍼티가 하나 더 있습니다. 바로 `children` prop입니다. `children` prop는 알 수 없는 데이터 구조가 자식 요소가 전달됨을 의미합니다. 컴포넌트에 텍스트(문자열)를 `children` props로 전달할 때 어떻게 보이는지 보겠습니다.
- 
+
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
 class App extends Component {
@@ -1447,7 +1447,7 @@ class Button extends Component {
 
 지금까지 4가지 ES6 클래스 컴포넌트를 만들어봤습니다. 이제 컴포넌트를 만드는데 자신감이 생겼길 바랍니다. 이번 장에서 비 상태 함수형 컴포넌트(Functional Stateless Components)를 만들어 보겠습니다. 다시 한번 앞에서 배운 리액트 컴포넌트 유형을 정리해봅시다. 
 
-* **비 상태 함수형 컴포넌트** 비 상태 함수형 컴포넌트는 props를 입력으로 받고 JSX를 반환하는 함수입니다. 여기까지는 ES6 클래스 컴포넌트와 비슷합니다. 그러나 비 상태 함수형 컴포넌트는 state가 없기 때문에 `this.state` 또는 `this.setState()`로 state에 액세서 하거나 업데이트할 수 없습니다. 또한 생명주기 메서드도 없습니다. 아직 생명주기 메서드에 대해 배우지 않았지만, 우리는 생명주기 메서드인 `constructor()`과 `render()`을 사용했습니다. 생명주기 동안 `constructor()`는 한 번만 실행되는 반면, `render()`은 컴포넌트가 업데이트될 때마다 한번 실행됩니다. 비 상태 함수형은 생명주기 메서드가 없음을 꼭 기억하길 바랍니다. 
+* **비 상태 함수형 컴포넌트** 비 상태 함수형 컴포넌트는 props를 입력으로 받고 JSX를 반환하는 함수입니다. 여기까지는 ES6 클래스 컴포넌트와 비슷합니다. 그러나 비 상태 함수형 컴포넌트는 state가 없기 때문에 `this.state` 또는 `this.setState()`로 state에 액세스 하거나 업데이트할 수 없습니다. 또한 생명주기 메서드도 없습니다. 아직 생명주기 메서드에 대해 배우지 않았지만, 우리는 생명주기 메서드인 `constructor()`과 `render()`을 사용했습니다. 생명주기 동안 `constructor()`는 한 번만 실행되는 반면, `render()`은 컴포넌트가 업데이트될 때마다 한번 실행됩니다. 비 상태 함수형은 생명주기 메서드가 없음을 꼭 기억하길 바랍니다. 
 
 * **ES6 클래스 컴포넌트** 우리는 이미 ES6 클래스 컴포넌트를 사용해봤습니다. 클래스 정의 시, `extends Component`란 리액트 컴포넌트로 확장한다는 것을 뜻합니다. `extend`는 리액트 컴포넌트 API인 생명주기 메서드를 컴포넌트로 연결시킵니다. 때문에 `render()` 클래스 메서드를 사용할 수 있는 겁니다. 또한 `this.state`와 `this.setState()`메서드로 상태를 저장하고 조작합니다.
 
@@ -1536,7 +1536,7 @@ const Search = ({ value, onChange, children }) => {
 ### 실습하기
 
 * Table과 Button컴포넌트를 비 상태 함수 컴포넌트로 리팩토링합니다.
- 
+
 ### 읽어보기
 * [[리액트 공식문서] ES6 클래스 컴포넌트와 비상태 함수 컴포넌트](https://reactjs.org/docs/components-and-props.html)
 
@@ -1702,7 +1702,7 @@ class App extends Component {
 }
 ~~~~~~~~
 
-이어서 비상태 함수형 컴포넌트인 Tab 컴포넌트에도 클래스 이름을 추가합시다.
+이어서 비상태 함수형 컴포넌트인 Table 컴포넌트에도 클래스 이름을 추가합시다.
 
 {title="src/App.js",lang=javascript}
 ~~~~~~~~
